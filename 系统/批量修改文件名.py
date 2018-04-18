@@ -1,6 +1,6 @@
 import os
 
-path = "D:\\恐怖熱線"
+path = "C:\\Users\\Jabzer\\Downloads\\恐怖熱線"
 
 def mp4Tomp3(path):
     for root,dirs,files in os.walk(path,topdown=True):
