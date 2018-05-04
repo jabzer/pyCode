@@ -11,7 +11,7 @@ def download(url,local_dir):
     try:
         yt=YouTube(url)
     except Exception as e:
-        print("[ERROR--    ]  {0}".format(str(e)).encode("utf-8"))
+        print("[ERROR--    ]  {0}".format(str(e)).encode("gbk"))
         return -1
     pattern = r'[\/.:?<>|]+'
     regex = re.compile(pattern)
@@ -35,7 +35,7 @@ if __name__=='__main__':
     try:
         os.makedirs(local_dir,exist_ok=True)
     except OSError as e:
-        print(e.reason)
+        print(e.reason.encode('utf-8'))
         exit(1)
 
     for url in urls:
