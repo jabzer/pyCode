@@ -3,7 +3,7 @@
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QWidget,QPushButton,QLabel,
-                             QLCDNumber,QSlider,QVBoxLayout,QApplication)
+                             QLCDNumber,QSlider,QVBoxLayout,QApplication,QMessageBox)
 
 class Example(QWidget):
     def __init__(self):
@@ -40,7 +40,7 @@ class Example(QWidget):
     def buttonClicked(self):
         sender = self.sender()
         self.lb.setText(sender.text()+'被按下')
-        # self.statusBar().showMessage(sender.text()+'被按下')
+        QMessageBox.about(self,'提醒',sender.text()+'被按下')
 
 
 
