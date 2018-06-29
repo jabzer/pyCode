@@ -10,7 +10,7 @@ HEADERS = {
     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
 }
 
-QUALITY = 'ld'  # 支持是 'ld' 'sd' 'hd' 分别是低清、中清、高清
+QUALITY = 'hd'  # 支持是 'ld' 'sd' 'hd' 分别是低清、中清、高清
 
 
 def get_video_ids_from_url(url):
@@ -53,8 +53,10 @@ def download(url):
 
 if __name__ == '__main__':
     #url = 'https://www.zhihu.com/question/267782048/answer/352619226'
-    url = sys.argv[1]
-    download(url)
+    #url = sys.argv[1]
+    while 1:
+        url = input("下载链接：")
+        download(url)
 
 
 #ffmpeg -i "https://vdn.vzuu.com/Act-ss-m3u8-hd/d749ea4ed21f46bfa9fe4f49005f1b8c/72272d86-79a9-11e8-ae5e-0242ac112a19.m3u8?auth_key=1530179106-0-0-48db017d0cd0f4658784f03c15c7f572&expiration=1530179106&disable_local_cache=0"  -c copy 1234567.mp4
