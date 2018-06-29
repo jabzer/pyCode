@@ -1,0 +1,1 @@
+D:\PycharmProjects\venv\Scripts\activate & python D:\PycharmProjects\pyCode\ÍøÂçÅÀ³æ\ÏÂÔØÖªºõÊÓÆµ.py
