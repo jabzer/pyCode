@@ -10,7 +10,7 @@ HEADERS = {
     'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
 }
 
-QUALITY = 'hd'  # 支持是 'ld' 'sd' 'hd' 分别是低清、中清、高清
+#QUALITY = 'hd'  # 支持是 'ld' 'sd' 'hd' 分别是低清、中清、高清
 
 
 def get_video_ids_from_url(url):
@@ -22,7 +22,7 @@ def get_video_ids_from_url(url):
     return []
 
 
-def yield_video_m3u8_url_from_video_ids(video_ids):
+def yield_video_m3u8_url_from_video_ids(video_ids,QUALITY):
     for video_id in video_ids:
         api_video_url = 'https://lens.zhihu.com/api/videos/{}'.format(int(video_id))
         r = requests.get(api_video_url, headers=HEADERS)
@@ -31,14 +31,14 @@ def yield_video_m3u8_url_from_video_ids(video_ids):
         yield m3u8_url
 
 
-def download(url):
+def download(url,QUALITY):
     video_ids = get_video_ids_from_url(url)
-    m3u8_list = list(yield_video_m3u8_url_from_video_ids(video_ids))
+    m3u8_list = list(yield_video_m3u8_url_from_video_ids(video_ids,QUALITY))
     i = 0
     for idx, m3u8_url in enumerate(m3u8_list):
         i+=1
         print('++开始下载 : {}'.format(m3u8_url))
-        path = 'mp4\\{0}'.format(datetime.datetime.strftime(datetime.datetime.now(),'%Y%m%d'))
+        path = 'mp4\\{0}\\{1}'.format(QUALITY,datetime.datetime.strftime(datetime.datetime.now(),'%Y%m%d'))
         os.makedirs(path,exist_ok=True)
         filename = '{0}\\{1}.mp4'.format(path,datetime.datetime.strftime(datetime.datetime.now(),'%H%M%S%f'))
         #subprocess.call(['ffmpeg', '-i', m3u8_url, filename])
@@ -56,7 +56,8 @@ if __name__ == '__main__':
     #url = sys.argv[1]
     while 1:
         url = input("下载链接：")
-        download(url)
+        download(url,'hd')
+        download(url, 'ld')
 
 
 #ffmpeg -i "https://vdn.vzuu.com/Act-ss-m3u8-hd/d749ea4ed21f46bfa9fe4f49005f1b8c/72272d86-79a9-11e8-ae5e-0242ac112a19.m3u8?auth_key=1530179106-0-0-48db017d0cd0f4658784f03c15c7f572&expiration=1530179106&disable_local_cache=0"  -c copy 1234567.mp4
